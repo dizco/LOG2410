@@ -25,7 +25,6 @@ CircuitSolComposite::ElmCircuitSolPtr CircuitSolComposite::getSousElement(size_t
 	if (index < 0 || index > m_CircuitSolide.size() - 1)
 		return nullptr;
 	return m_CircuitSolide[index];
-	//TODO: Voir si possible d'appeler l'autre fonction pareille mais const?
 }
 
 const CircuitSolComposite::ElmCircuitSolPtr CircuitSolComposite::getSousElement(size_t index) const {
@@ -41,24 +40,34 @@ int CircuitSolComposite::nombreSousElements() const {
 
 void CircuitSolComposite::addSousElement(const ElmCircuitSolPtr& sousElem){
 	m_CircuitSolide.push_back(sousElem);
-	//TODO: Voir si possible d'appeler l'autre fonction pareille mais const?
 }
 
 void CircuitSolComposite::addSousElement(ElmCircuitSolide* sousElem){
-	int i = 0;
-	//m_CircuitSolide.push_back(sousElem);
+	addSousElement((ElmCircuitSolPtr)sousElem);
 }
 
 float CircuitSolComposite::getDebris(void) const {
 	// Recuperer la quantite de debris maximum parmi tous les enfants
 	float debrisMax = 0;
+	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); i++) {
+		float debris = (*i)->getDebris();
+		if (debris > debrisMax)
+			debrisMax = debris;
+	}
 	return debrisMax;
 }
 
 void CircuitSolComposite::operer( float duree ){
+	if (duree <= 0.0)
+		return;
+
+	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); i++) {
+		(*i)->operer(duree);
+	}
 }
 
 void CircuitSolComposite::nettoyer(){
+	m_CircuitSolide.clear();
 }
 
 
