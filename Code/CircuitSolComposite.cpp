@@ -49,7 +49,7 @@ void CircuitSolComposite::addSousElement(ElmCircuitSolide* sousElem){
 float CircuitSolComposite::getDebris(void) const {
 	// Recuperer la quantite de debris maximum parmi tous les enfants
 	float debrisMax = 0;
-	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); i++) {
+	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); ++i) {
 		float debris = (*i)->getDebris();
 		if (debris > debrisMax)
 			debrisMax = debris;
@@ -61,7 +61,7 @@ void CircuitSolComposite::operer( float duree ){
 	if (duree <= 0.0)
 		return;
 
-	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); i++) {
+	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); ++i) {
 		(*i)->operer(duree);
 	}
 }

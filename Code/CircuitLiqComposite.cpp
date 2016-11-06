@@ -46,7 +46,7 @@ void CircuitLiqComposite::addSousElement(ElmCircuitLiquide* sousElm){
 float CircuitLiqComposite::getTartre(void) const {
 	// Recuperer la quantite de tartre maximum parmi tous les enfants
 	float tartreMax = 0;
-	for (auto i = m_CircuitLiquide.begin(); i != m_CircuitLiquide.end(); i++) {
+	for (auto i = m_CircuitLiquide.begin(); i != m_CircuitLiquide.end(); ++i) {
 		float tartre = (*i)->getTartre();
 		if (tartre > tartreMax)
 			tartreMax = tartre;
@@ -57,7 +57,7 @@ float CircuitLiqComposite::getTartre(void) const {
 void CircuitLiqComposite::operer(float duree){
 	if (duree <= 0.0)
 		return;
-	for (auto i = m_CircuitLiquide.begin(); i != m_CircuitLiquide.end(); i++) {
+	for (auto i = m_CircuitLiquide.begin(); i != m_CircuitLiquide.end(); ++i) {
 		(*i)->operer(duree);
 	}
 }
