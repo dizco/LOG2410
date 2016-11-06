@@ -7,7 +7,7 @@
 #include "MachineLuxe.h"
 
 Test_TP4::Test_TP4()
-: m_machine1(new MachineBase() ), m_machine2(new MachineLuxe() )
+	: m_machine1(new MachineBase()), m_machine2(new MachineLuxe())
 {
 }
 
@@ -23,7 +23,7 @@ void Test_TP4::executeCompositeTest()
 	// Verifier de facon intrusive la structure de la machine de base
 	MachineBase* m1 = dynamic_cast<MachineBase*>(m_machine1.get());
 	std::shared_ptr<ElmCircuitLiquide> circ1_eauChaude = m1->m_CircuitEauChaude;
-	std::cout << "COMPOSITE test 1:" << ((circ1_eauChaude!=nullptr && circ1_eauChaude->nombreSousElements() == 6) ? "SUCCES" : "ECHEC") << std::endl;
+	std::cout << "COMPOSITE test 1:" << ((circ1_eauChaude != nullptr && circ1_eauChaude->nombreSousElements() == 6) ? "SUCCES" : "ECHEC") << std::endl;
 	std::shared_ptr<ElmCircuitSolide> circ1_the = m1->m_CircuitThe;
 	std::cout << "COMPOSITE test 2:" << ((circ1_the != nullptr && circ1_the->nombreSousElements() == 3) ? "SUCCES" : "ECHEC") << std::endl;
 
