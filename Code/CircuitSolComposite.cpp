@@ -67,7 +67,9 @@ void CircuitSolComposite::operer( float duree ){
 }
 
 void CircuitSolComposite::nettoyer(){
-	m_CircuitSolide.clear();
+	for (auto i = m_CircuitSolide.begin(); i != m_CircuitSolide.end(); ++i) {
+		(*i)->nettoyer();
+	}
 }
 
 

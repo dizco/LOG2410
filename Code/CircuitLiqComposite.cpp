@@ -63,7 +63,9 @@ void CircuitLiqComposite::operer(float duree){
 }
 
 void CircuitLiqComposite::nettoyer(){
-	m_CircuitLiquide.clear();
+	for (auto i = m_CircuitLiquide.begin(); i != m_CircuitLiquide.end(); ++i) {
+		(*i)->nettoyer();
+	}
 }
 
 
