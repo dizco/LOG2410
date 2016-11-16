@@ -24,4 +24,8 @@ void ExecuteurCommandes::executer( ProgrammeMachine* _prog, ElmVisitable* _circu
 {
 	// Itérer sur les chacune des commandes spécifiées dans le programme et les exécuter
 	// A completer
+	for (int i = 0; i < _prog->nombreCommandes(); i++)
+	{
+		_prog->getCommande(i)->executer(_circuitCible);
+	}
 }
