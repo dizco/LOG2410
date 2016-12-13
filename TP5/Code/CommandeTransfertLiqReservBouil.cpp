@@ -26,7 +26,7 @@ void CommandeTransfertLiqReservBouil::VisiteurTransfertLiqReservBouil::traiterPo
 	// Operer la pompe pour une duree correspondant au temps necessaire pour transferer le volume de liquide
 	// La duree d'operation est le volume a transferer divise par le debit de la pompe
 	// A completer
-	_pomp->operer(_pomp->volumeLiquide / _pomp->getDebit());
+	_pomp->operer(m_volume / _pomp->getDebit()); //_pomp->volumeLiquide
 }
 
 void CommandeTransfertLiqReservBouil::VisiteurTransfertLiqReservBouil::traiterBouilloire(Bouilloire * _bouil)
@@ -34,7 +34,6 @@ void CommandeTransfertLiqReservBouil::VisiteurTransfertLiqReservBouil::traiterBo
 	// Verifier si le volume restant de la bouilloire peut contenir la quantite de liquide transferee
 	// Si oui, augmenter le niveau de la bouilloire d'une quantite equivalente au volume transfere
 	// A completer
-	float vol = _bouil->getVolume();
 	if (_bouil->getVolume() >= _bouil->getNiveau() + m_volume)
 		_bouil->setNiveau(_bouil->getNiveau() + m_volume);
 	else
